@@ -3,17 +3,35 @@ package com.example;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertThrows;
 
 class CalculatorTest {
-    private final Calculator calculator = new Calculator();
 
-    @Test
-    void add_sumsTwoNumbers() {
-        assertEquals(7, calculator.add(3, 4));
-    }
+    Calculator calculator = new Calculator();
 
-    @Test
-    void subtract_subtractsSecondFromFirst() {
-        assertEquals(1, calculator.subtract(5, 4));
+        @Test
+        void testAdd() {
+            assertEquals(15, calculator.add(10, 5));
+        }
+
+        @Test
+        void testSubtract() {
+            assertEquals(5, calculator.subtract(10, 5));
+        }
+
+        @Test
+        void testMultiply() {
+            assertEquals(50, calculator.multiply(10, 5));
+        }
+
+        @Test
+        void testDivide() {
+            assertEquals(2, calculator.divide(10, 5));
+        }
+
+        @Test
+        void testDivideByZero() {
+            assertThrows(IllegalArgumentException.class, () -> {calculator.divide(10, 0);
+            });
+        }
     }
-}
